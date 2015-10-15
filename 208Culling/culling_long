@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+
+def main():
+    inputs = [line.strip().split() for line in open("input.txt")]
+    outputs = [" ".join(output) for output in list(map(removedupes, inputs))]
+    for output in outputs: print(output)
+
+def removedupes(numbers):
+    clean = []
+    for number in numbers:
+        if number not in clean:
+            clean.append(number)
+    return clean
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+
+def main():
+    inputs = [line.strip().split() for line in open("input.txt")]
+    for i in inputs: print(" ".join(list(set(i))))
+
+if __name__ == "__main__":
+    main()
