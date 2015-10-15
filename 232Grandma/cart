@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+import math
+import copy
+def main():
+    points = []
+    count = 0
+    closest = None
+    spot = []
+    for line in open("coordinates.txt"):
+        if count == 0:
+            count = int(line)
+        else:
+            points.append(line.strip().replace("(", "").replace(")", "").split(","))
+    for point in points:
+        compare = copy.deepcopy(points)
+        compare.remove(point)
+        for comp in compare:
+            dist = distance(point, comp)
+            if closest == None:
+                closest = dist
+                spot = [point, comp]
+            elif dist < closest:
+                closest = dist
+                spot = [point, comp]
+    print(spot)
+
+def distance(point1, point2):
+    xdistance = float(point1[0]) - float(point2[0])
+    ydistance = float(point1[1]) - float(point2[1])
+    total = math.sqrt(math.pow(xdistance, 2) + math.pow(ydistance, 2)) 
+    return total
+
+if __name__ == "__main__":
+    main()

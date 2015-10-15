@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+
+def main():
+    words = [line.strip() for line in open('/usr/share/dict/words')]
+    for line in open("input.txt"):
+        line = line.strip().replace("\"","").split()
+        results = [earth(line), ryza(line), hoth(line), omicron(line)]
+        for result in results:
+            if result.split()[0].lower() in words:
+                print(result)
+
+def omicron(chars):
+    result = ""
+    for char in chars:
+        bits = "{0:08b}".format(int(char))
+        newbits = bits[0:3]
+        if bits[3] == '0':
+            newbits += '1'
+        else:
+            newbits += '0'
+        newbits += bits[4:]
+        result += chr(int(newbits, 2))
+    return result
+
+def hoth(chars):
+    result = ""
+    for char in chars:
+        result += chr(int(char) + 10)
+    return result
+
+def ryza(chars):
+    result = ""
+    for char in chars:
+        result += chr(int(char) - 1)
+    return result
+
+def earth(chars):
+    result = ""
+    for char in chars:
+        result += chr(int(char))
+    return result[::-1]
+
+if __name__ == "__main__":
+    main()

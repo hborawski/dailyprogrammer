@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+
+words = []
+
+
+def main():
+    for line in open("/usr/share/dict/words"):
+        words.append(line.strip())
+    for line in open("input.txt"):
+        squiggly(line.strip())
+
+def squiggly(word):
+    test = ""
+    failed = False
+    for char in word:
+        if not failed:
+            if not checkWord(test + char):
+                test = test + "<"
+                failed = True
+        test = test + char
+    print(test)
+
+def checkWord(phrase):
+    for word in words:
+        if word.startswith(phrase):
+            return True
+    return False
+
+if __name__ == "__main__":
+    main()

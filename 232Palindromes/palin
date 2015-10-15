@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+import re
+def main():
+    string = re.sub(r'[^\w]',"","".join(open("text2.txt").readlines()[1:])).lower()
+    print("Palindrome" if string == string[::-1] else "Not a palindrome")
+
+
+if __name__ == "__main__":
+    main()
