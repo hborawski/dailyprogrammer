@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+
+def main():
+    #inputs = "0-7475-3269-9"
+    inputs = "0-8044-2957-X"
+    print(sum([(10-i)*int(inputs.replace("-","")[i]) for i in range(9)]+[10 if inputs.replace("-","")[-1] == "X" else int(inputs.replace("-","")[-1])])%11 == 0)
+
+if __name__ == "__main__":
+    main()
