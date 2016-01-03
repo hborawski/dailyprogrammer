@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+
+def main():
+    num = int(input("Input number:"))
+    sig = sigma(num)
+    if sig < num*2:
+        print("{} deficient".format(num))
+    elif sig > nm*2:
+        print("{} abundant by {}".format(num, sig-(num*2)))
+    else:
+        print("{} ~~neither~~".format(num))
+
+
+def sigma(n):
+    sig = 0
+    for i in range(1, n+1):
+        if n%i == 0:
+            sig += i
+    return sig
+
+
+if __name__ == "__main__":
+    main()
