@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+import copy
+import random
+
+def main(filename):
+    participants = []
+    assigned = []
+    for line in open(filename):
+        line = line.strip()
+        if " " in line:
+            line = line.split()
+            for name in line:
+                family = copy.copy(line)
+                family.remove(name)
+                participants.append(Person(name, family))
+        else:
+            participants.append(Person(line))
+
+    # this definitely hangs sometimes but should realistically always eventually complete
+    # once it hits a valid ordering
+    while not allAssigned(participants):
+        random.shuffle(participants)
+        for p in participants:
+            if not p.hasAssignment():
+                for part in participants:
+                    if p.name != part.name:
+                        if not part.assigned and not p.isfamily(part):
+                            part.assigned = True
+                            p.assignment = part
+                            break
+    for p in participants:
+        print(p)
+"""
+Determine if everyone has been assigned to receive a gift or not
+"""
+def allAssigned(l):
+    assigned = True
+    for element in l:
+        if element.assigned != True:
+            return False
+    return True
+
+"""
+Class to represent a person and their family
+"""
+class Person():
+    def __init__(self, name, family=[]):
+        self.name = name
+        self.family = family
+        self.assignment = None
+        self.assigned = False
+    def hasAssignment(self):
+        return self.assignment != None
+    def isfamily(self, person):
+        return person.name in self.family
+    def __str__(self):
+        if self.hasAssignment():
+            return "{} -> {}".format(self.name, self.assignment.name)
+        else:
+            return self.name
+
+if __name__ == "__main__":
+    main("input.txt")
