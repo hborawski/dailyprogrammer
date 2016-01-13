@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+
+def main():
+    fname = "input.txt"
+    numbers = open(fname).readline().split()
+    numbers = [float(num) for num in numbers]
+    m = min(numbers)
+    numbers = numbers[numbers.index(m) + 2:]
+    print("{} {}".format(m, max(numbers)))
+
+if __name__ == "__main__":
+    main()
