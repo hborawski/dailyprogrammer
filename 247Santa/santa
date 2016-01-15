@@ -4,7 +4,6 @@ import random
 
 def main(filename):
     participants = []
-    assigned = []
     for line in open(filename):
         line = line.strip()
         if " " in line:
