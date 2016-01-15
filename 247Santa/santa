@@ -35,7 +35,6 @@ def main(filename):
 Determine if everyone has been assigned to receive a gift or not
 """
 def allAssigned(l):
-    assigned = True
     for element in l:
         if element.assigned != True:
             return False
