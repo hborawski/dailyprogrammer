@@ -25,9 +25,10 @@ def main(filename):
                 for part in participants:
                     if p.name != part.name:
                         if not part.assigned and not p.isfamily(part):
-                            part.assigned = True
-                            p.assignment = part
-                            break
+                            if not part.assignment == p:
+                                part.assigned = True
+                                p.assignment = part
+                                break
     for p in participants:
         print(p)
 """
